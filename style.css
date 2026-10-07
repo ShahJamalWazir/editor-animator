@@ -787,3 +787,167 @@ footer {
         letter-spacing: -3px;
     }
 }
+
+/* =========================================
+   CUSTOM CURSOR
+========================================= */
+
+.custom-cursor {
+    position: fixed;
+
+    width: 7px;
+    height: 7px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        width 0.2s ease,
+        height 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.cursor-follower {
+    position: fixed;
+
+    width: 35px;
+    height: 35px;
+
+    border: 1px solid rgba(124, 60, 255, 0.7);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 9998;
+
+    transform: translate(-50%, -50%);
+
+    transition:
+        width 0.3s ease,
+        height 0.3s ease,
+        background 0.3s ease,
+        border 0.3s ease;
+}
+
+
+/* Cursor becomes larger over interactive elements */
+
+.cursor-hover .custom-cursor {
+    width: 10px;
+    height: 10px;
+
+    background: #7c3cff;
+}
+
+
+.cursor-hover .cursor-follower {
+    width: 55px;
+    height: 55px;
+
+    border-color: #7c3cff;
+
+    background: rgba(124, 60, 255, 0.08);
+}
+
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(50px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+}
+
+
+.reveal.revealed {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   NAVBAR SCROLL STATE
+========================================= */
+
+.navbar.scrolled {
+    background: rgba(5, 5, 5, 0.92);
+
+    border-bottom-color:
+        rgba(124, 60, 255, 0.2);
+}
+
+
+/* =========================================
+   EXTRA PROJECT EFFECT
+========================================= */
+
+.project-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(124, 60, 255, 0.12),
+            transparent 60%
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:
+        transform 0.8s ease;
+}
+
+
+.project:hover .project-image::after {
+    transform:
+        translateX(100%);
+}
+
+
+/* =========================================
+   SERVICE NUMBER HOVER
+========================================= */
+
+.service:hover > span {
+    color: #7c3cff;
+}
+
+
+/* =========================================
+   MOBILE CURSOR
+========================================= */
+
+/*
+   Touchscreen devices don't need a custom cursor.
+*/
+
+@media (max-width: 800px) {
+
+    .custom-cursor,
+    .cursor-follower {
+        display: none;
+    }
+
+}
