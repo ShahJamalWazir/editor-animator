@@ -440,13 +440,21 @@ section {
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 100px 35px;
 }
 
 .project {
     cursor: pointer;
 }
+
+
+/* =========================================
+   PROJECT IMAGE
+========================================= */
 
 .project-image {
     aspect-ratio: 16 / 10;
@@ -456,28 +464,57 @@ section {
     border: 1px solid #222222;
 
     position: relative;
+
     overflow: hidden;
 
-    transition: 0.5s ease;
+    transition:
+        transform 0.6s ease,
+        border-color 0.5s ease;
 }
 
-.project:hover .project-image {
-    transform: scale(0.98);
-    border-color: #7c3cff;
-}
-
-.project-placeholder {
+.project-image img {
+    width: 100%;
     height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: cover;
 
-    color: #333333;
+    display: block;
 
-    font-size: 12px;
-    letter-spacing: 4px;
+    opacity: 0.75;
+
+    filter: grayscale(20%);
+
+    transform: scale(1.02);
+
+    transition:
+        transform 0.8s ease,
+        opacity 0.6s ease,
+        filter 0.6s ease;
 }
+
+
+/* =========================================
+   PROJECT HOVER
+========================================= */
+
+.project:hover .project-image {
+    border-color: #7c3cff;
+
+    transform: scale(0.985);
+}
+
+.project:hover .project-image img {
+    transform: scale(1.08);
+
+    opacity: 1;
+
+    filter: grayscale(0%);
+}
+
+
+/* =========================================
+   PROJECT NUMBER
+========================================= */
 
 .project-number {
     position: absolute;
@@ -485,11 +522,84 @@ section {
     top: 20px;
     left: 20px;
 
-    z-index: 2;
+    z-index: 3;
 
     font-size: 11px;
-    color: #777777;
+
+    color: #ffffff;
+
+    letter-spacing: 1px;
+
+    mix-blend-mode: difference;
 }
+
+
+/* =========================================
+   PROJECT OVERLAY
+========================================= */
+
+.project-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: flex-end;
+
+    padding: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 40%,
+            rgba(124, 60, 255, 0.18)
+        );
+
+    opacity: 0;
+
+    transition: opacity 0.5s ease;
+}
+
+.project:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-overlay span {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #ffffff;
+
+    padding: 12px 18px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.4);
+
+    background:
+        rgba(0, 0, 0, 0.5);
+
+    backdrop-filter: blur(8px);
+
+    transform: translateY(15px);
+
+    transition:
+        transform 0.5s ease;
+}
+
+.project:hover .project-overlay span {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   PROJECT INFORMATION
+========================================= */
 
 .project-info {
     padding-top: 20px;
@@ -497,22 +607,48 @@ section {
 
 .project-info p {
     font-size: 9px;
+
     letter-spacing: 3px;
+
     color: #7c3cff;
+
     margin-bottom: 8px;
 }
 
 .project-info h3 {
     font-size: 28px;
+
     font-weight: 500;
-    margin-bottom: 5px;
+
+    margin-bottom: 7px;
+
+    transition: color 0.3s ease;
+}
+
+.project:hover .project-info h3 {
+    color: #7c3cff;
 }
 
 .project-info span {
     font-size: 12px;
+
     color: #666666;
 }
 
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .projects {
+        grid-template-columns: 1fr;
+
+        gap: 70px;
+    }
+
+}
 
 /* =========================================
    SERVICES
